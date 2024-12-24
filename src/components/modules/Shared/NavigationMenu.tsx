@@ -6,19 +6,19 @@ import { FaRegUser } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
 const NavigationMenu = () => {
   return (
-    <div className="flex-col  border p-5 rounded-2xl">
-      <ul className=" flex flex-col  gap-16 text-xl">
+    <div className="flex-col  border p-3 lg:p-5 rounded-2xl">
+      <ul className=" flex flex-row lg:flex-col  gap-12 md:gap-16 lg:gap-16 text-xl">
         <Link href={"/"}>
           <li>
             <IoMdHome />{" "}
           </li>
         </Link>
-        <Link href={"/"}>
-          <li>
+        <Link href={"/about"}>
+          <li title="About">
             <FaRegUser />{" "}
           </li>
         </Link>
-        <Link href={"/"}>
+        <Link href={"/project"}>
           <li>
             <FaRegUser />{" "}
           </li>

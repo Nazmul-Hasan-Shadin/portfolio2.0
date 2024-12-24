@@ -27,7 +27,7 @@ const SelfBrandCard = () => {
           }
         />
         <div>
-          <h2 className="text-xl font-normal  ">Nazmul Hasan Shadin</h2>
+          <h2 className=" text-xl font-normal  ">Nazmul Hasan Shadin</h2>
           <span className="text-xl font-normal inline-block">
             FUll Stack Developers
           </span>
@@ -51,7 +51,7 @@ const SelfBrandCard = () => {
           </div>
         </div>
 
-        <Button className="bg-primaryColor text-black hover:bg-black hover:border hover:text-primaryColor hover:font-bold hover:border-primaryColor w-full    ">
+        <Button className="bg-primaryColor  text-black hover:bg-black hover:border hover:text-primaryColor hover:font-bold hover:border-primaryColor w-2/3 md:w-full    ">
           <IoIosMail className="text-xl" /> Hire Me
         </Button>
       </div>

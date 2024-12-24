@@ -4,18 +4,19 @@ import { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="flex justify-between gap-4 ">
-      <div className="fixed top-0 left-0 w-[350px] pl-3">
-        <SelfBrandCard></SelfBrandCard>
+    <div className="grid lg:grid-cols-12 lg:gap-4 ">
+      <div className="col-span-12 lg:col-span-3">
+        <div className="lg:fixed top-0 left-0  pl-3">
+          <SelfBrandCard></SelfBrandCard>
+        </div>
       </div>
-
-      <div className="relative flex flex-col h-screen">
-        <main className="container  mx-auto max-w-7xl ml-[350px] pt-16 px-6 flex-grow">
+      <div className=" col-span-12 lg:col-span-7">
+        <main className="container  mx-auto max-w-7xl   pt-16 px-6 flex-grow">
           {children}
         </main>
       </div>
-      <div>
-        <div className="fixed lg:right-16 lg:top-24">
+      <div className="w-3/4  mx-4 md:w-ful md:col-span-12 lg:col-span-2">
+        <div className="fixed bottom-3 lg:right-16 lg:top-24">
           <NavigationMenu />
         </div>
       </div>
