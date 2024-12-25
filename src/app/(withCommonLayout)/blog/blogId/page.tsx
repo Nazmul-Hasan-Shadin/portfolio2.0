@@ -1,9 +1,7 @@
-import React from "react";
-
 const BlogDetailsPage = () => {
   return (
     <div>
-      <h3>this is blog details page bpro bro</h3>
+      <h3>This is the blog details page for blog ID</h3>
     </div>
   );
 };
