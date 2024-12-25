@@ -9,9 +9,9 @@ import { IoIosMail } from "react-icons/io";
 
 const SelfBrandCard = () => {
   return (
-    <div className="lg:max-w-[350px] lg:h-[660px] border-gray-500 rounded-2xl border ">
+    <div className="lg:max-w-[350px] h-[606px] lg:h-[660px] border-gray-500 rounded-2xl border ">
       <div className="flex flex-wrap  p-5  justify-between items-center">
-        <h1 className="text-3xl">Shadin</h1>
+        <h1 className="md:text-2xl lg:text-3xl">Shadin</h1>
         <h1 className="text-sm  text-blue-300">
           Developer <br /> & designer
         </h1>
@@ -27,8 +27,10 @@ const SelfBrandCard = () => {
           }
         />
         <div>
-          <h2 className=" text-xl font-normal  ">Nazmul Hasan Shadin</h2>
-          <span className="text-xl font-normal inline-block">
+          <h2 className=" text-medium lg:text-xl font-normal  ">
+            Nazmul Hasan Shadin
+          </h2>
+          <span className=" text-[12px] lg:text-xl font-normal inline-block">
             FUll Stack Developers
           </span>
 
@@ -40,13 +42,13 @@ const SelfBrandCard = () => {
         {/* =========logo section============= */}
 
         <div className="logo flex gap-3  mb-4">
-          <div className="w-12 h-12  rounded-full border border-[#565656] flex items-center justify-center">
+          <div className="w-10 h-10 lg:w-12 lg:h-12  rounded-full border border-[#565656] flex items-center justify-center">
             <CiFacebook className=" w-5 h-5" />
           </div>
-          <div className="w-12 h-12  rounded-full border border-[#565656] flex items-center justify-center">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-[#565656] flex items-center justify-center">
             <IoLogoGithub className="w-5 h-5" />
           </div>
-          <div className="w-12 h-12  rounded-full border border-[#565656] flex items-center justify-center">
+          <div className="w-10 h-10 lg:w-12 lg:h-12 rounded-full border border-[#565656] flex items-center justify-center">
             <CiLinkedin className=" w-5 h-5" />
           </div>
         </div>

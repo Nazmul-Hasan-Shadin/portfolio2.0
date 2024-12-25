@@ -5,7 +5,6 @@ import Style from "./project.module.css";
 
 import projecimg from "@/src/assests/e-commerce.png";
 const ProjectPage = () => {
-  const variants = ["solid", "underlined", "bordered", "light"];
   return (
     <div>
       <div>
@@ -15,7 +14,7 @@ const ProjectPage = () => {
           <Tabs variant="underlined">
             <Tab key={"react"} title={"React"}></Tab>
             <Tab key={"Next Js"} title={"Next js"}>
-              <div className="flex gap-5 ">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
                 <Card>
                   <CardBody>
                     <div

@@ -39,7 +39,7 @@ export default function Home() {
   }, [displayedText, isDeleting, designation, currentIndex, speed]);
 
   return (
-    <div className=" ">
+    <div className="pt-16">
       <h2 className="text-xl">Introduction</h2>
 
       <div className="flex flex-col justify-center items-center h-80">
@@ -51,7 +51,7 @@ export default function Home() {
         </h1>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .blinking-cursor {
           display: inline-block;
           width: 2px;
@@ -60,8 +60,7 @@ export default function Home() {
           animation: blink 1s infinite;
         }
         @keyframes blink {
-          0%,
-          100% {
+          0%, 100% {
             opacity: 1;
           }
           50% {

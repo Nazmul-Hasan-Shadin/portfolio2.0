@@ -9,25 +9,31 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 const ContactPage = () => {
   const onSubmit: SubmitHandler<any> = (data) => {};
   return (
-    <PForm onSubmit={onSubmit}>
-      <div className="grid grid-cols-2  gap-4">
-        <PInput label="First Name" name="firstName" />
+    <div className="grid justify-items-center content-center h-screen">
+      <h2 className="text-primaryColor">Lets Send Email </h2>
+      <PForm onSubmit={onSubmit}>
+        <div className="grid grid-cols-2  gap-4 ">
+          <PInput label="First Name" name="firstName" />
 
-        <PInput label="Last Name" name="lastName" />
+          <PInput label="Last Name" name="lastName" />
 
-        <div className="col-span-2">
-          <PInput label="Email" name="email" />
+          <div className="col-span-2">
+            <PInput label="Email" name="email" />
+          </div>
+
+          <div className="col-span-2">
+            <PTextArea label="Message" name="message" />
+          </div>
         </div>
 
-        <div className="col-span-2">
-          <PTextArea label="Message" name="message" />
-        </div>
-      </div>
-
-      <Button type="submit" className="bg-primaryColor mt-8 text-black w-2/3">
-        Send Mail
-      </Button>
-    </PForm>
+        <Button
+          type="submit"
+          className="bg-primaryColor mt-8 text-black w-full"
+        >
+          Send Mail
+        </Button>
+      </PForm>
+    </div>
   );
 };
 

@@ -5,21 +5,23 @@ import { ReactNode } from "react";
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="grid lg:grid-cols-12 lg:gap-4 ">
-      <div className="col-span-12 lg:col-span-3">
+      <div className="col-span-12 md:col-span-2 lg:col-span-3">
         <div className="lg:fixed top-0 left-0  pl-3">
           <SelfBrandCard></SelfBrandCard>
         </div>
       </div>
-      <div className=" col-span-12 lg:col-span-7">
-        <main className="container  mx-auto max-w-7xl   pt-16 px-6 flex-grow">
+      <div className=" col-span-12 md:col-span-7 lg:col-span-6">
+        <main className="container  mx-auto max-w-7xl   px-6 flex-grow">
           {children}
         </main>
       </div>
-      <div className="w-3/4  mx-4 md:w-ful md:col-span-12 lg:col-span-2">
-        <div className="fixed bottom-3 lg:right-16 lg:top-24">
+      <div className="w-3/4 col-span-12   mx-4 md:w-full md:col-span-12 lg:col-span-2">
+        <div className="fixed  right-2 top-5  lg:right-16 lg:top-24">
           <NavigationMenu />
         </div>
       </div>
     </div>
   );
 }
+
+// bottom-3 left-0 w-full

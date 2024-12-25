@@ -17,8 +17,8 @@ const AboutPage = () => {
     <div className="container mx-auto px-6 py-16">
       {/* About Section */}
       <section className="mb-12">
-        <h1 className="text-4xl font-bold mb-4">About Me</h1>
-        <p className="text-lg text-gray-700 leading-7">
+        <h1 className="text-xl md:text-2xl font-bold mb-4">About Me</h1>
+        <p className="text-medium md:text-lg text-gray-700 leading-7">
           Hello! I am <span className="font-semibold">Nazmul Hasan Shadin</span>
           , a passionate Full Stack Developer. I specialize in creating scalable
           and efficient web applications using modern technologies. With a
@@ -30,7 +30,9 @@ const AboutPage = () => {
 
       {/* Skills Section */}
       <section>
-        <h2 className="text-3xl font-bold mb-8">My Skills</h2>
+        <h2 className="text-xl md:text-2xl lg:text-2xxl font-bold  mb-8">
+          My Skills
+        </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {skills.map((skill) => (
             <div
