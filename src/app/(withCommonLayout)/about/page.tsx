@@ -1,17 +1,30 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import { useEffect, useState } from "react";
+
+interface Skill {
+  name: string;
+  image: string;
+}
 
 const AboutPage = () => {
-  const skills = [
-    { name: "HTML", image: "/images/html.png" },
-    { name: "CSS", image: "/images/css.png" },
-    { name: "JavaScript", image: "/images/javascript.png" },
-    { name: "React", image: "/images/react.png" },
-    { name: "Next.js", image: "/images/nextjs.png" },
-    { name: "Node.js", image: "/images/nodejs.png" },
-    { name: "Tailwind CSS", image: "/images/tailwind.png" },
-    { name: "MongoDB", image: "/images/mongodb.png" },
-  ];
+  const [skills, setSkills] = useState<Skill[]>([]);
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const response = await fetch(
+          "https://portfolio-backend-with-prisma.vercel.app/api/v1/skill"
+        );
+        const data = await response.json();
+        setSkills(data.data);
+      } catch (error) {
+        console.error("Error fetching skills:", error);
+      }
+    };
+
+    fetchSkills();
+  }, []);
 
   return (
     <div className="container mx-auto px-6 py-16">
@@ -34,21 +47,27 @@ const AboutPage = () => {
           My Skills
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {skills.map((skill) => (
-            <div
-              key={skill.name}
-              className="flex flex-col items-center justify-center bg-white border shadow-md p-4 rounded-lg hover:shadow-lg transition duration-300"
-            >
-              <Image
-                src={skill.image}
-                alt={skill.name}
-                width={80}
-                height={80}
-                className="mb-3"
-              />
-              <p className="text-lg font-medium text-gray-800">{skill.name}</p>
-            </div>
-          ))}
+          {skills.length > 0 ? (
+            skills.map((skill) => (
+              <div
+                key={skill.name}
+                className="flex flex-col items-center justify-center bg-white border shadow-md p-4 rounded-lg hover:shadow-lg transition duration-300"
+              >
+                <Image
+                  src={skill.image || "/images/default.png"}
+                  alt={skill.name}
+                  width={80}
+                  height={80}
+                  className="mb-3"
+                />
+                <p className="text-lg font-medium text-gray-800">
+                  {skill.name}
+                </p>
+              </div>
+            ))
+          ) : (
+            <p>Loading skills...</p>
+          )}
         </div>
       </section>
     </div>
