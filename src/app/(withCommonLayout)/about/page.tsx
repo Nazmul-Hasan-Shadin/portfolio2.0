@@ -9,6 +9,8 @@ interface Skill {
 
 const AboutPage = () => {
   const [skills, setSkills] = useState<Skill[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchSkills = async () => {
@@ -17,9 +19,12 @@ const AboutPage = () => {
           "https://portfolio-backend-with-prisma.vercel.app/api/v1/skill"
         );
         const data = await response.json();
-        setSkills(data?.data);
+        setSkills(data?.data || []);
       } catch (error) {
         console.error("Error fetching skills:", error);
+        setError("Failed to load skills. Please try again later.");
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -31,7 +36,7 @@ const AboutPage = () => {
       {/* About Section */}
       <section className="mb-12">
         <h1 className="text-xl md:text-2xl font-bold mb-4">About Me</h1>
-        <p className="text-medium md:text-lg text-gray-700 leading-7">
+        <p className="text-xs md:text-lg text-gray-500 leading-7">
           Hello! I am <span className="font-semibold">Nazmul Hasan Shadin</span>
           , a passionate Full Stack Developer. I specialize in creating scalable
           and efficient web applications using modern technologies. With a
@@ -43,9 +48,12 @@ const AboutPage = () => {
 
       {/* Skills Section */}
       <section>
-        <h2 className="text-xl md:text-2xl lg:text-2xxl font-bold  mb-8">
-          My Skills
-        </h2>
+        <h2 className="text-xl md:text-2xl font-bold mb-8">My Skills</h2>
+
+        {/* Error & Loading State */}
+        {loading && <p>Loading skills...</p>}
+        {error && <p className="text-red-500">{error}</p>}
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
           {skills.length > 0 ? (
             skills.map((skill) => (
@@ -58,7 +66,8 @@ const AboutPage = () => {
                   alt={skill.name}
                   width={80}
                   height={80}
-                  className="mb-3"
+                  className="mb-3 rounded-lg object-contain"
+                  priority
                 />
                 <p className="text-lg font-medium text-gray-800">
                   {skill.name}
@@ -66,7 +75,7 @@ const AboutPage = () => {
               </div>
             ))
           ) : (
-            <p>Loading skills...</p>
+            <p>No skills available</p>
           )}
         </div>
       </section>

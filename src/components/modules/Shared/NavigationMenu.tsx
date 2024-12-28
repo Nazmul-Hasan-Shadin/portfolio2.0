@@ -8,7 +8,7 @@ import { FaRegPenToSquare } from "react-icons/fa6";
 import { IoTerminal } from "react-icons/io5";
 const NavigationMenu = () => {
   return (
-    <div className="flex-col  border p-1 md:p-2 lg:p-5 rounded-md md:rounded-2xl">
+    <div className="flex-col  border p-2 md:p-2 lg:p-5 rounded-md md:rounded-2xl">
       <ul className=" flex flex-col gap-16 justify-between  lg:flex-col   md:gap-16 lg:gap-16 text-xl">
         <Link href={"/"}>
           <li>

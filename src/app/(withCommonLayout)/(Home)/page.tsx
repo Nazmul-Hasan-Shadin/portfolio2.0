@@ -1,4 +1,5 @@
 "use client";
+import Container from "@/src/components/modules/Container";
 import React, { useState, useEffect } from "react";
 
 export default function Home() {
@@ -39,19 +40,22 @@ export default function Home() {
   }, [displayedText, isDeleting, designation, currentIndex, speed]);
 
   return (
-    <div className="pt-16">
-      <h2 className="text-xl">Introduction</h2>
+    <Container>
+      <div className="pt-16">
+        <h2 className="text-xl">Introduction</h2>
 
-      <div className="flex flex-col justify-center items-center h-80">
-        <h2 className="text-3xl lg:text-4xl">Nazmul Hasan Shadin</h2>
+        <div className="flex flex-col justify-center items-center h-80">
+          <h2 className="text-xl md:text-3xl lg:text-4xl">
+            Nazmul Hasan Shadin
+          </h2>
 
-        <h1 className="lg:text-2xl text-blue-500 mt-4">
-          I am <span className="font-bold">{displayedText}</span>
-          <span className="blinking-cursor">|</span>
-        </h1>
-      </div>
+          <h1 className="lg:text-2xl text-blue-500 mt-4">
+            I am <span className="font-bold">{displayedText}</span>
+            <span className="blinking-cursor">|</span>
+          </h1>
+        </div>
 
-      <style>{`
+        <style>{`
         .blinking-cursor {
           display: inline-block;
           width: 2px;
@@ -68,6 +72,7 @@ export default function Home() {
           }
         }
       `}</style>
-    </div>
+      </div>
+    </Container>
   );
 }
