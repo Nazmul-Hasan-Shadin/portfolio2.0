@@ -17,7 +17,7 @@ const AboutPage = () => {
           "https://portfolio-backend-with-prisma.vercel.app/api/v1/skill"
         );
         const data = await response.json();
-        setSkills(data.data);
+        setSkills(data?.data);
       } catch (error) {
         console.error("Error fetching skills:", error);
       }

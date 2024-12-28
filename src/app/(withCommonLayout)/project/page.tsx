@@ -10,7 +10,7 @@ type Project = {
   id: string;
   name: string;
   description: string;
-  image?: string;
+  images?: string;
   projectLink: string;
   type?: string;
 };
@@ -48,7 +48,7 @@ const ProjectPage = () => {
                     <CardBody>
                       <div
                         style={{
-                          backgroundImage: `url(${project.image || projecimg.src})`,
+                          backgroundImage: `url(${project.images || projecimg.src})`,
                         }}
                         className={`${Style.projectImage} `}
                       ></div>
@@ -81,7 +81,7 @@ const ProjectPage = () => {
                     <CardBody>
                       <div
                         style={{
-                          backgroundImage: `url(${project.image || projecimg.src})`,
+                          backgroundImage: `url(${project.images || projecimg.src})`,
                         }}
                         className={`${Style.projectImage}`}
                       ></div>
@@ -112,7 +112,7 @@ const ProjectPage = () => {
                     <CardBody>
                       <div
                         style={{
-                          backgroundImage: `url(${project.image || projecimg.src})`,
+                          backgroundImage: `url(${project.images || projecimg.src})`,
                         }}
                         className={`${Style.projectImage}`}
                       ></div>
