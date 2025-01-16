@@ -1,8 +1,49 @@
 "use client";
 import Container from "@/src/components/modules/Container";
-import React, { useState, useEffect } from "react";
+import Image from "next/image";
+
+import Style from "./project.module.css";
+
+import projecimg from "@/src/assests/e-commerce.png";
+import { useEffect, useState } from "react";
+import { Tabs, Tab, Card, CardBody, Button } from "@nextui-org/react";
+
+type Project = {
+  id: string;
+  name: string;
+  description: string;
+  images?: string;
+  projectLink: string;
+  type?: string;
+};
+interface Skill {
+  name: string;
+  image: string;
+}
 
 export default function Home() {
+  const [skills, setSkills] = useState<Skill[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchSkills = async () => {
+      try {
+        const response = await fetch(
+          "https://portfolio-backend-with-prisma.vercel.app/api/v1/skill"
+        );
+        const data = await response.json();
+        setSkills(data?.data || []);
+      } catch (error) {
+        console.error("Error fetching skills:", error);
+        setError("Failed to load skills. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSkills();
+  }, []);
   const designation = [
     "Full Stack Developer",
     "Mern Stack Developer",
@@ -39,6 +80,26 @@ export default function Home() {
     return () => clearTimeout(timeout);
   }, [displayedText, isDeleting, designation, currentIndex, speed]);
 
+  // project fetch data
+
+  const [projectData, setProjectData] = useState<Project[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://portfolio-backend-with-prisma.vercel.app/api/v1"
+        );
+        const result = await response.json();
+        setProjectData(result.data);
+      } catch (error) {
+        console.log("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <Container>
       <div className="pt-16">
@@ -72,6 +133,158 @@ export default function Home() {
           }
         }
       `}</style>
+
+        {/* About Section */}
+        <section className="mb-12">
+          <h1 className="text-xl md:text-2xl font-bold mb-4">About Me</h1>
+          <p className="text-xs md:text-lg text-gray-500 leading-7">
+            Hello! I am{" "}
+            <span className="font-semibold">Nazmul Hasan Shadin</span>, a
+            passionate Full Stack Developer. I specialize in creating scalable
+            and efficient web applications using modern technologies. With a
+            strong foundation in both frontend and backend development, I strive
+            to deliver high-quality solutions that meet user needs and business
+            goals.
+          </p>
+        </section>
+
+        {/* Skills Section */}
+        <section>
+          <h2 className="text-xl md:text-2xl font-bold mb-8">My Skills</h2>
+
+          {/* Error & Loading State */}
+          {loading && <p>Loading skills...</p>}
+          {error && <p className="text-red-500">{error}</p>}
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {skills.length > 0 ? (
+              skills.map((skill) => (
+                <div
+                  key={skill.name}
+                  className="flex flex-col items-center justify-center bg-white border shadow-md p-4 rounded-lg hover:shadow-lg transition duration-300"
+                >
+                  <Image
+                    src={skill.image || "/images/default.png"}
+                    alt={skill.name}
+                    width={80}
+                    height={80}
+                    className="mb-3 rounded-lg object-contain"
+                    priority
+                  />
+                  <p className="text-lg font-medium text-gray-800">
+                    {skill.name}
+                  </p>
+                </div>
+              ))
+            ) : (
+              <p>No skills available</p>
+            )}
+          </div>
+        </section>
+
+        {/* project section  */}
+        <div>
+          <h2>Projects</h2>
+
+          <div className="flex flex-wrap gap-4">
+            <Tabs variant="underlined">
+              <Tab key={"react"} title={"React"}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-2">
+                  {projectData.map((project) => (
+                    <Card key={project.id}>
+                      <CardBody>
+                        <div
+                          style={{
+                            backgroundImage: `url(${project.images || projecimg.src})`,
+                          }}
+                          className={`${Style.projectImage} `}
+                        ></div>
+                        <div className="">
+                          <h4>{project.name}</h4>
+                          <p>{project.description}</p>
+                          <small className="my-3">
+                            {project.type || "FullStack"}
+                          </small>{" "}
+                        </div>
+                        <Button
+                          className=" mt-3 border border-primaryColor  bg-black text-primaryColor"
+                          as="a"
+                          href={project.projectLink}
+                          target="_blank"
+                          color="primary"
+                        >
+                          View Live
+                        </Button>
+                      </CardBody>
+                    </Card>
+                  ))}
+                </div>
+              </Tab>
+
+              <Tab key={"Next Js"} title={"Next.js"}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-2">
+                  {projectData.map((project) => (
+                    <Card key={project.id}>
+                      <CardBody>
+                        <div
+                          style={{
+                            backgroundImage: `url(${project.images || projecimg.src})`,
+                          }}
+                          className={`${Style.projectImage}`}
+                        ></div>
+                        <h4>{project.name}</h4>
+                        <p>{project.description}</p>
+                        <small className="my-3">
+                          {project.type || "FullStack"}
+                        </small>
+                        <Button
+                          className="  border border-primaryColor  bg-black text-primaryColor"
+                          as="a"
+                          href={project.projectLink}
+                          target="_blank"
+                          color="primary"
+                        >
+                          View Live
+                        </Button>
+                      </CardBody>
+                    </Card>
+                  ))}
+                </div>
+              </Tab>
+
+              <Tab key={"Js"} title={"JavaScript"}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:grid-cols-2">
+                  {projectData.map((project) => (
+                    <Card key={project.id}>
+                      <CardBody>
+                        <div
+                          style={{
+                            backgroundImage: `url(${project.images || projecimg.src})`,
+                          }}
+                          className={`${Style.projectImage}`}
+                        ></div>
+                        <h4>{project.name}</h4>
+                        <p>{project.description}</p>
+                        <small className="my-3">
+                          {project.type || "FullStack"}
+                        </small>
+                        <Button
+                          className="  border border-primaryColor  bg-black text-primaryColor"
+                          as="a"
+                          href={project.projectLink}
+                          target="_blank"
+                          color="primary"
+                        >
+                          View Live
+                        </Button>
+                      </CardBody>
+                    </Card>
+                  ))}
+                </div>
+              </Tab>
+            </Tabs>
+          </div>
+        </div>
       </div>
     </Container>
   );
