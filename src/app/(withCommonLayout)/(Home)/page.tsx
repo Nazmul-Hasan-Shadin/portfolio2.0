@@ -7,6 +7,12 @@ import Style from "./project.module.css";
 import projecimg from "@/src/assests/e-commerce.png";
 import { useEffect, useState } from "react";
 import { Tabs, Tab, Card, CardBody, Button } from "@nextui-org/react";
+import PForm from "@/src/components/ui/Form/PForm";
+import PInput from "@/src/components/ui/Form/PInput";
+import PTextArea from "@/src/components/ui/Form/PTextArea";
+
+import React from "react";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 
 type Project = {
   id: string;
@@ -99,6 +105,10 @@ export default function Home() {
 
     fetchData();
   }, []);
+
+  // ==========contact form handler
+
+  const onSubmit: SubmitHandler<any> = (data) => {};
 
   return (
     <Container>
@@ -284,6 +294,33 @@ export default function Home() {
               </Tab>
             </Tabs>
           </div>
+        </div>
+
+        {/*================== contact fomr =============== */}
+        <div className="grid justify-items-center content-center h-screen">
+          <h2 className="text-primaryColor">Lets Send Email </h2>
+          <PForm onSubmit={onSubmit}>
+            <div className="grid grid-cols-2  gap-4 ">
+              <PInput label="First Name" name="firstName" />
+
+              <PInput label="Last Name" name="lastName" />
+
+              <div className="col-span-2">
+                <PInput label="Email" name="email" />
+              </div>
+
+              <div className="col-span-2">
+                <PTextArea label="Message" name="message" />
+              </div>
+            </div>
+
+            <Button
+              type="submit"
+              className="bg-primaryColor mt-8 text-black w-full"
+            >
+              Send Mail
+            </Button>
+          </PForm>
         </div>
       </div>
     </Container>
